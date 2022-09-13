@@ -1,7 +1,22 @@
 doctype html
-html
+html(lang='en')
   head
     title= title
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    block content
+    header(class="header")
+      nav(class="header__nav")
+        h1(class="header__title") Vegan Recipes  
+        ul(class="header__navList")
+          li
+            a(class="header__navLink" href="/cookbook") Home
+          li
+            a(class="header__navLink" href='/cookbook/recipes') Recipes
+          li
+            a(class="header__navLink" href='/cookbook/courses') Authors
+          li
+            a(class="header__navLink" href='/cookbook/cuisines') Cuisines
+
+  block content
