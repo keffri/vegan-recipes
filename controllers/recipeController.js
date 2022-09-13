@@ -1,7 +1,31 @@
 const Recipe = require('../models/recipe');
+const Course = require('../models/course');
+const Cuisine = require('../models/cuisine');
+
+const async = require('async');
 
 exports.index = (req, res) => {
-  res.send('Vegan Recipes');
+  async.parallel(
+    {
+      recipe_count(callback) {
+        Recipe.countDocuments({}, callback);
+      },
+      course_count(callback) {
+        Course.countDocuments({}, callback);
+      },
+      cuisine_count(callback) {
+        Cuisine.countDocuments({}, callback);
+      },
+    },
+
+    (err, results) => {
+      res.render('index', {
+        title: 'Vegan Recipes',
+        error: err,
+        data: results,
+      });
+    }
+  );
 };
 
 // Display list of all recipes.
