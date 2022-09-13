@@ -8,7 +8,7 @@ const CuisineScheme = new Schema({
 });
 
 CuisineScheme.virtual('url').get(function () {
-  return `/cuisine/${this.id}`;
+  return `/cookbook/cuisine/${this.id}`;
 });
 
 module.exports = mongoose.model('Cuisine', CuisineScheme);

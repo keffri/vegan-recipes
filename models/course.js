@@ -7,7 +7,7 @@ const CourseSchema = new Schema({
 });
 
 CourseSchema.virtual('url').get(function () {
-  return `/course/${this.id}`;
+  return `/cookbook/course/${this.id}`;
 });
 
 module.exports = mongoose.model('Course', CourseSchema);
