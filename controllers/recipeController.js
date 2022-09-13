@@ -29,8 +29,21 @@ exports.index = (req, res) => {
 };
 
 // Display list of all recipes.
-exports.recipe_list = (req, res) => {
-  res.send('NOT IMPLEMENTED: Recipe list');
+exports.recipe_list = (req, res, next) => {
+  Recipe.find({}, 'name')
+    .sort({ name: 1 })
+    .populate('course')
+    .populate('cuisine')
+    .exec(function (err, list_recipes) {
+      if (err) {
+        return next(err);
+      }
+
+      res.render('recipe_list', {
+        title: 'Recipe List',
+        recipe_list: list_recipes,
+      });
+    });
 };
 
 // Display detail page for a specific recipe.
