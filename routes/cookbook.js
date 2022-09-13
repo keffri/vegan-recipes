@@ -7,4 +7,15 @@ const cuisine_controller = require('../controllers/cuisineController');
 
 router.get('/', recipe_controller.index);
 
+// RECIPE ROUTES
+router.get('/recipes', recipe_controller.recipe_list);
+
+// COURSE ROUTES
+
+router.get('/courses', course_controller.course_list);
+
+// CUISINE ROUTES
+
+router.get('/cuisines', cuisine_controller.cuisine_list);
+
 module.exports = router;
