@@ -1,0 +1,13 @@
+extends layout 
+
+block content
+    h1(class="recipeList__title")= title
+
+    ul 
+        each recipe in recipe_list
+            li(class="recipeList__item")
+                a(href=recipe.url) #{recipe.name}
+                p Course: #{recipe.course.name}
+                p Cuisine: #{recipe.cuisine.name}
+        else 
+            li There are no recipes
