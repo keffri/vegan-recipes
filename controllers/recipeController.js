@@ -66,8 +66,8 @@ exports.recipe_detail = (req, res, next) => {
       res.render('recipe_detail', {
         title: 'Recipe Detail',
         recipe: recipe,
-        course: recipe.course.name,
-        cuisine: recipe.cuisine.name,
+        course: recipe.course,
+        cuisine: recipe.cuisine,
       });
     });
 };
