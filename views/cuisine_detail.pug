@@ -1,0 +1,18 @@
+extends layout
+
+block content
+
+  h1(class="cuisineDetail__title") Cuisine: #{cuisine.name}
+
+  p(class="cuisineDetail__description") Description: #{cuisine.description}
+
+  div(style='margin-left:20px;margin-top:20px')
+
+    h4(class="cuisineDetail__subTitle") Recipes
+
+    dl
+      each recipe in cuisine_recipes
+        dt
+          a(href=recipe.url) #{recipe.name}
+      else
+        p This cuisine has no recipes
