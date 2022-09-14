@@ -1,0 +1,9 @@
+extends layout 
+
+block content
+    h1(class="courseList__title")= title
+
+    ul 
+        each course in course_list
+            li(class="courseList__item")
+                a(href=course.url) #{course.name}
