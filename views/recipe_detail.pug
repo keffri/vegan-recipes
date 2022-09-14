@@ -2,6 +2,10 @@ extends layout
 
 block content
 
-  h1 Title: #{recipe.name}
-  p Course: #{course}
-  p Cuisine: #{cuisine}
+  h1 Title: #{recipe.name} 
+  ul 
+    li
+      a(href=`/cookbook/course/${course._id}`) Course: #{course.name}
+  ul
+    li 
+      a(href=`/cookbook/cuisine/${cuisine._id}`) Cuisine: #{cuisine.name}
