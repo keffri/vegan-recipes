@@ -7,3 +7,5 @@ block content
         each cuisine in cuisine_list
             li(class="cuisineList__item")
                 a(href=cuisine.url) #{cuisine.name}
+        else 
+            li There are no cuisines
