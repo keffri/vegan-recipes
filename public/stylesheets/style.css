@@ -60,6 +60,7 @@ a:link, a:visited {
 }
 
 html, body {
+  min-height: 100vh;
   background-color: #161616;
   color: rgba(255, 255, 255, 0.8431372549);
   font-family: Arial, Helvetica, sans-serif;
@@ -85,6 +86,17 @@ html, body {
   margin: 0.5rem 0;
 }
 
+/*** COURSE DETAIL ***/
+.courseDetail__title {
+  font-size: 1.5rem;
+  margin: 1rem 0;
+}
+.courseDetail__subTitle {
+  font-size: 1.2rem;
+  text-decoration: underline;
+  margin-bottom: 0.5rem;
+}
+
 /*** CUISINE LIST ***/
 .cuisineList__title {
   font-size: 1.5rem;
@@ -108,7 +120,7 @@ html, body {
 
 /*** HEADER ***/
 .header {
-  margin: 1rem 0;
+  padding: 1rem 0;
 }
 .header__nav {
   display: flex;
@@ -122,6 +134,14 @@ html, body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+/*** INDEX ***/
+.index__title {
+  font-size: 1.75rem;
+  text-decoration: underline;
+  display: flex;
+  justify-content: center;
 }
 
 /*# sourceMappingURL=style.css.map */
