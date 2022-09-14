@@ -1,12 +1,14 @@
 extends layout
 
 block content
-  p Welcome to #[em Vegan Recipes]
+  h2(class="index__title") Welcome to Vegan Recipes
 
   if error
     p Error getting dynamic content.
   else
-    ul
-      li #[strong Recipes:] !{data.recipe_count}
-      li #[strong Courses:] !{data.course_count}
-      li #[strong Cuisines:] !{data.cuisine_count}
+    ul(class="index__list")
+      li(class="index__list--item")
+        p There are currently !{data.recipe_count} added recipes to look at.
+        a(href="/cookbook/recipes") Check out all the recipes here! 
+      li(class="index__list--item") Check out all !{data.course_count} added courses here!
+      li(class="index__list--item") Check out all !{data.cuisine_count} added cuisine types here!
