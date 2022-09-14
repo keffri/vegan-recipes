@@ -1,0 +1,9 @@
+extends layout 
+
+block content
+    h1(class="cuisineList__title")= title
+
+    ul 
+        each cuisine in cuisine_list
+            li(class="cuisineList__item")
+                a(href=cuisine.url) #{cuisine.name}
