@@ -75,6 +75,26 @@ html, body {
   margin: 0.5rem 0;
 }
 
+/*** COURSE LIST***/
+.courseList__title {
+  font-size: 1.5rem;
+  text-decoration: underline;
+  margin: 1rem 0;
+}
+.courseList__item {
+  margin: 0.5rem 0;
+}
+
+/*** CUISINE LIST ***/
+.cuisineList__title {
+  font-size: 1.5rem;
+  text-decoration: underline;
+  margin: 1rem 0;
+}
+.cuisineList__item {
+  margin: 0.5rem 0;
+}
+
 /*** HEADER ***/
 .header {
   margin: 1rem 0;

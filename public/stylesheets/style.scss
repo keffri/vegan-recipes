@@ -74,6 +74,35 @@ html, body {
 	}
 }
 
+/*** COURSE LIST***/
+
+.courseList {
+	&__title {
+		font-size: 1.5rem;
+		text-decoration: underline;
+		margin: 1rem 0;
+	}
+
+	&__item {
+		margin: 0.5rem 0;
+	}
+}
+
+/*** CUISINE LIST ***/
+
+
+.cuisineList {
+	&__title {
+		font-size: 1.5rem;
+		text-decoration: underline;
+		margin: 1rem 0;
+	}
+
+	&__item {
+		margin: 0.5rem 0;
+	}
+}
+
 /*** HEADER ***/
 
 .header {
