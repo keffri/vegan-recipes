@@ -1,0 +1,16 @@
+extends layout
+
+block content
+
+  h1(class="courseDetail__title") Course: #{course.name}
+
+  div(style='margin-left:20px;margin-top:20px')
+
+    h4(class="courseDetail__subTitle") Recipes
+
+    dl
+      each recipe in course_recipes
+        dt
+          a(href=recipe.url) #{recipe.name}
+      else
+        p This course has no recipes
