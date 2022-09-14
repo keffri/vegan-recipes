@@ -3,6 +3,8 @@ const Course = require('../models/course');
 const Cuisine = require('../models/cuisine');
 
 const async = require('async');
+const { default: mongoose } = require('mongoose');
+const course = require('../models/course');
 
 exports.index = (req, res) => {
   async.parallel(
@@ -47,6 +49,25 @@ exports.recipe_list = (req, res, next) => {
 };
 
 // Display detail page for a specific recipe.
-exports.recipe_detail = (req, res) => {
-  res.send(`NOT IMPLEMENTED: Recipe detail: ${req.params.id}`);
+exports.recipe_detail = (req, res, next) => {
+  Recipe.findById(req.params.id)
+    .populate('name')
+    .populate('course')
+    .populate('cuisine')
+    .exec(function (err, recipe) {
+      if (err) {
+        return next(err);
+      }
+      if (recipe === null) {
+        const err = new Error('Recipe not found');
+        err.status = 404;
+        return next(err);
+      }
+      res.render('recipe_detail', {
+        title: 'Recipe Detail',
+        recipe: recipe,
+        course: recipe.course.name,
+        cuisine: recipe.cuisine.name,
+      });
+    });
 };
