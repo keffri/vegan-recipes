@@ -17,6 +17,8 @@ router.get('/recipe/:id', recipe_controller.recipe_detail);
 
 router.get('/courses', course_controller.course_list);
 
+router.get('/course/:id', course_controller.course_detail);
+
 // CUISINE ROUTES
 
 router.get('/cuisines', cuisine_controller.cuisine_list);
