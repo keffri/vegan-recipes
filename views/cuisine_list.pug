@@ -2,6 +2,7 @@ extends layout
 
 block content
     h1(class="cuisineList__title")= title
+    a(href="/cookbook/cuisine/create") Create a new cuisine!
 
     ul 
         each cuisine in cuisine_list

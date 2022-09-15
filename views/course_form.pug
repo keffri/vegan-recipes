@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1 #{title}
+
+  form(method='POST' action='')
+    div
+      label(for='name') Course:
+      input(type='text', placeholder='Breakfast, lunch, dinner...' name='name' value=(undefined===course ? '' : course.name))
+    button(type='submit') Submit
+
+  if errors
+   ul
+    for error in errors
+     li!= error.msg

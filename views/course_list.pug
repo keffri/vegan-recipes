@@ -2,6 +2,7 @@ extends layout
 
 block content
     h1(class="courseList__title")= title
+    a(href="/cookbook/course/create") Create a new course!
 
     ul 
         each course in course_list

@@ -2,6 +2,7 @@ extends layout
 
 block content
     h1(class="recipeList__title")= title
+    a(href="/cookbook/recipe/create") Create a new recipe!
 
     ul 
         each recipe in recipe_list

@@ -1,0 +1,41 @@
+extends layout
+
+block content
+  h1= title
+
+  form(method='POST' action='')
+    div
+      label(for='name') Name:
+      input(type='text', placeholder='Name of recipe' name='name' required='true' value=(undefined===recipe ? '' : recipe.title) )
+      label(for='prepTime') Prep Time:
+      input(type='number',  name='prepTime' required='true' value=(undefined===recipe ? '' : recipe.prepTime) )
+      label(for='cookTime') Cook Time:
+      input(type='number',  name='cookTime' required='true' value=(undefined===recipe ? '' : recipe.cookTime) )
+      label(for='totalTime') Total Time:
+      input(type='number',  name='totalTime' required='true' value=(undefined===recipe ? '' : recipe.totalTime) )
+      label(for='servingSize') Serving Size:
+      input(type='number',  name='servingSize' required='true' value=(undefined===recipe ? '' : recipe.servingSize) )
+      label(for='link') Link:
+      input(type='text',  name='link' value=(undefined===recipe ? '' : recipe.link) )
+    div
+      label(for='course') Course:
+      select(type='select', placeholder='Select course' name='course' required='true' )
+        - courses.sort(function(a, b) {let textA = a.name.toUpperCase(); let textB = b.name.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
+        for course in courses
+          if recipe
+            option(value=course._id selected=(course._id.toString()===recipe.course._id.toString() ? 'selected' : false) ) #{course.name}
+          else
+            option(value=course._id) #{course.name}
+    div
+      label Cuisine:
+      div
+        for cuisine in cuisines
+          div(style='display: inline; padding-right:10px;')
+            input(type='checkbox', name='cuisine', id=cuisine._id, value=cuisine._id, checked=cuisine.checked )
+            label(for=cuisine._id) #{cuisine.name}
+    button(type='submit') Submit
+
+    if errors
+        ul
+            for error in errors
+                li!= error.msg
