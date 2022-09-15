@@ -16,3 +16,6 @@ block content
           a(href=recipe.url) #{recipe.name}
       else
         p This cuisine has no recipes
+    hr
+    p
+      a(href=`${cuisine.url}/delete`) Delete cuisine
