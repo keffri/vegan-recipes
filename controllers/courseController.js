@@ -117,7 +117,7 @@ exports.course_delete_get = (req, res, next) => {
       }
 
       res.render('course_delete', {
-        title: 'Course Delete',
+        title: 'Course Delete!',
         course: results.course,
         course_recipes: results.course_recipes,
       });
@@ -137,6 +137,7 @@ exports.course_delete_post = (req, res, next) => {
     },
     (err, results) => {
       if (err) {
+        console.log(err);
         return next(err);
       }
 
@@ -149,7 +150,7 @@ exports.course_delete_post = (req, res, next) => {
         return;
       }
 
-      Recipe.findByIdAndRemove(req.body.courseid, (err) => {
+      Course.findByIdAndRemove(req.body.courseid, (err) => {
         if (err) {
           return next(err);
         }
