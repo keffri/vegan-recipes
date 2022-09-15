@@ -156,3 +156,49 @@ exports.recipe_create_post = [
     });
   },
 ];
+
+exports.recipe_delete_get = (req, res, next) => {
+  async.parallel(
+    {
+      recipe(callback) {
+        Recipe.findById(req.params.id).exec(callback);
+      },
+    },
+    (err, results) => {
+      if (err) {
+        return next(err);
+      }
+      if (results.recipe === null) {
+        res.redirect('/cookbook/recipes');
+      }
+
+      res.render('recipe_delete', {
+        title: 'Recipe Delete',
+        recipe: results.recipe,
+      });
+    }
+  );
+};
+
+exports.recipe_delete_post = (req, res, next) => {
+  async.parallel(
+    {
+      recipe(callback) {
+        Recipe.findById(req.body.recipeid).exec(callback);
+      },
+    },
+    (err, results) => {
+      if (err) {
+        return next(err);
+      }
+
+      Recipe.findByIdAndRemove(req.body.recipeid, (err) => {
+        if (err) {
+          return next(err);
+        }
+
+        res.redirect('/cookbook/recipes');
+      });
+    }
+  );
+};
