@@ -1,6 +1,7 @@
 const Course = require('../models/course');
 const Recipe = require('../models/recipe');
 const async = require('async');
+const { body, validationResult } = require('express-validator');
 
 // Display list of all courses.
 exports.course_list = (req, res, next) => {
@@ -48,3 +49,50 @@ exports.course_detail = (req, res, next) => {
     }
   );
 };
+
+exports.course_create_get = (req, res, next) => {
+  res.render('course_form', { title: 'Course Form' });
+};
+
+exports.course_create_post = [
+  body('name')
+    .trim()
+    .isLength({ min: 1 })
+    .escape()
+    .withMessage('A course name must be specified.')
+    .isAlphanumeric()
+    .withMessage('Course name contains non-alphanumeric characters.'),
+  (req, res, next) => {
+    const errors = validationResult(req);
+
+    const course = new Course({
+      name: req.body.name,
+    });
+
+    if (!errors.isEmpty()) {
+      res.render('course_form', {
+        title: 'Course Form',
+        course,
+        errors: errors.array(),
+      });
+      return;
+    } else {
+      Course.findOne({ name: req.body.name }).exec((err, found_course) => {
+        if (err) {
+          return next(err);
+        }
+
+        if (found_course) {
+          res.redirect(found_course.url);
+        } else {
+          course.save((err) => {
+            if (err) {
+              return next(err);
+            }
+            res.redirect(course.url);
+          });
+        }
+      });
+    }
+  },
+];

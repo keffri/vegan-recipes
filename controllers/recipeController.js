@@ -1,10 +1,8 @@
 const Recipe = require('../models/recipe');
 const Course = require('../models/course');
 const Cuisine = require('../models/cuisine');
-
 const async = require('async');
-const { default: mongoose } = require('mongoose');
-const course = require('../models/course');
+const { body, validationResult } = require('express-validator');
 
 exports.index = (req, res) => {
   async.parallel(
@@ -71,3 +69,90 @@ exports.recipe_detail = (req, res, next) => {
       });
     });
 };
+
+exports.recipe_create_get = (req, res, next) => {
+  async.parallel(
+    {
+      courses(callback) {
+        Course.find(callback);
+      },
+      cuisines(callback) {
+        Cuisine.find(callback);
+      },
+    },
+    (err, results) => {
+      if (err) {
+        return next(err);
+      }
+      res.render('recipe_form', {
+        title: 'Recipe Form',
+        courses: results.courses,
+        cuisines: results.cuisines,
+      });
+    }
+  );
+};
+
+exports.recipe_create_post = [
+  body('name')
+    .trim()
+    .isLength({ min: 1 })
+    .escape()
+    .withMessage('A recipe name must be specified.'),
+  body('prepTime'),
+  body('cookTime'),
+  body('totalTime'),
+  body('servingSize'),
+  body('link').isURL().withMessage('Invalid URL'),
+  // body('course'),
+  // body('cuisine'),
+
+  (req, res, next) => {
+    const errors = validationResult(req);
+
+    const recipe = new Recipe({
+      name: req.body.name,
+      prepTime: req.body.prepTime,
+      cookTime: req.body.cookTime,
+      totalTime: req.body.totalTime,
+      servingSize: req.body.servingSize,
+      link: req.body.link,
+      course: req.body.course,
+      cuisine: req.body.cuisine,
+    });
+
+    if (!errors.isEmpty()) {
+      async.parallel(
+        {
+          courses(callback) {
+            Course.find(callback);
+          },
+          cuisines(callback) {
+            Cuisine.find(callback);
+          },
+        },
+        (err, results) => {
+          if (err) {
+            return next(err);
+          }
+          res.render('recipe_form', {
+            title: 'Recipe Form',
+            courses: results.courses,
+            cuisines: results.cuisines,
+            recipe,
+            errors: errors.array(),
+          });
+        }
+      );
+      return;
+    }
+
+    recipe.save((err) => {
+      if (err) {
+        return next(err);
+      }
+
+      res.redirect(recipe.url);
+    });
+  },
+];
