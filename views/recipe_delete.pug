@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1 #{title}: #{recipe.name}
+
+  p Do you really want to delete this recipe?
+
+  form(method='POST' action='')
+    div
+        input(type='hidden', name='recipeid', required='true', value=recipe._id )
+
+    button(type='submit') Delete
