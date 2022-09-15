@@ -15,6 +15,10 @@ router.get('/recipe/create', recipe_controller.recipe_create_get);
 
 router.post('/recipe/create', recipe_controller.recipe_create_post);
 
+router.get('/recipe/:id/delete/', recipe_controller.recipe_delete_get);
+
+router.post('/recipe/:id/delete/', recipe_controller.recipe_delete_post);
+
 router.get('/recipe/:id', recipe_controller.recipe_detail);
 
 // COURSE ROUTES
