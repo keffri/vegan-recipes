@@ -2,6 +2,7 @@ const Course = require('../models/course');
 const Recipe = require('../models/recipe');
 const async = require('async');
 const { body, validationResult } = require('express-validator');
+const course = require('../models/course');
 
 // Display list of all courses.
 exports.course_list = (req, res, next) => {
@@ -96,3 +97,66 @@ exports.course_create_post = [
     }
   },
 ];
+
+exports.course_delete_get = (req, res, next) => {
+  async.parallel(
+    {
+      course(callback) {
+        Course.findById(req.params.id).exec(callback);
+      },
+      course_recipes(callback) {
+        Recipe.find({ course: req.params.id }).exec(callback);
+      },
+    },
+    (err, results) => {
+      if (err) {
+        return next(err);
+      }
+      if (results.course === null) {
+        res.redirect('/cookbook/courses');
+      }
+
+      res.render('course_delete', {
+        title: 'Course Delete',
+        course: results.course,
+        course_recipes: results.course_recipes,
+      });
+    }
+  );
+};
+
+exports.course_delete_post = (req, res, next) => {
+  async.parallel(
+    {
+      course(callback) {
+        Course.findById(req.body.courseid).exec(callback);
+      },
+      course_recipes(callback) {
+        Recipe.find({ course: req.body.courseid }).exec(callback);
+      },
+    },
+    (err, results) => {
+      console.log(results.course_recipes);
+      if (err) {
+        return next(err);
+      }
+
+      if (results.course_recipes.length > 0) {
+        res.render('course_delete', {
+          title: 'Course Delete',
+          course: results.course,
+          course_recipes: results.course_recipes,
+        });
+        return;
+      }
+
+      Recipe.findByIdAndRemove(req.body.courseid, (err) => {
+        if (err) {
+          return next(err);
+        }
+
+        res.redirect('/cookbook/courses');
+      });
+    }
+  );
+};
