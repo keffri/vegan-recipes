@@ -25,6 +25,10 @@ router.get('/course/create', course_controller.course_create_get);
 
 router.post('/course/create', course_controller.course_create_post);
 
+router.get('/course/:id/delete/', course_controller.course_delete_get);
+
+router.get('/course/:id/delete/', course_controller.course_delete_post);
+
 router.get('/course/:id', course_controller.course_detail);
 
 // CUISINE ROUTES
