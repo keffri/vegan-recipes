@@ -166,7 +166,7 @@ exports.cuisine_delete_post = (req, res, next) => {
         return;
       }
 
-      Cuisine.findByIdAndRemove(req.body.courseid, (err) => {
+      Cuisine.findByIdAndRemove(req.body.cuisineid, (err) => {
         if (err) {
           return next(err);
         }
