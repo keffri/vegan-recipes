@@ -27,7 +27,7 @@ router.post('/course/create', course_controller.course_create_post);
 
 router.get('/course/:id/delete/', course_controller.course_delete_get);
 
-router.get('/course/:id/delete/', course_controller.course_delete_post);
+router.post('/course/:id/delete/', course_controller.course_delete_post);
 
 router.get('/course/:id', course_controller.course_detail);
 
@@ -38,6 +38,10 @@ router.get('/cuisines', cuisine_controller.cuisine_list);
 router.get('/cuisine/create', cuisine_controller.cuisine_create_get);
 
 router.post('/cuisine/create', cuisine_controller.cuisine_create_post);
+
+router.get('/cuisine/:id/delete/', cuisine_controller.cuisine_delete_get);
+
+router.post('/cuisine/:id/delete/', cuisine_controller.cuisine_delete_post);
 
 router.get('/cuisine/:id', cuisine_controller.cuisine_detail);
 
