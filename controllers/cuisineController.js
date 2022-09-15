@@ -114,3 +114,65 @@ exports.cuisine_create_post = [
     }
   },
 ];
+
+exports.cuisine_delete_get = (req, res, next) => {
+  async.parallel(
+    {
+      cuisine(callback) {
+        Cuisine.findById(req.params.id).exec(callback);
+      },
+      cuisine_recipes(callback) {
+        Recipe.find({ cuisine: req.params.id }).exec(callback);
+      },
+    },
+    (err, results) => {
+      if (err) {
+        return next(err);
+      }
+      if (results.cuisine === null) {
+        res.redirect('/cookbook/cuisines');
+      }
+
+      res.render('cuisine_delete', {
+        title: 'Cuisine Delete',
+        cuisine: results.cuisine,
+        cuisine_recipes: results.cuisine_recipes,
+      });
+    }
+  );
+};
+
+exports.cuisine_delete_post = (req, res, next) => {
+  async.parallel(
+    {
+      cuisine(callback) {
+        Cuisine.findById(req.body.cuisineid).exec(callback);
+      },
+      cuisine_recipes(callback) {
+        Recipe.find({ cuisine: req.body.cuisineid }).exec(callback);
+      },
+    },
+    (err, results) => {
+      if (err) {
+        return next(err);
+      }
+
+      if (results.cuisine_recipes.isLength > 0) {
+        res.render('cuisine_delete', {
+          title: 'Cuisine Delete',
+          cuisine: results.cuisine,
+          cuisine_recipes: results.cuisine_recipes,
+        });
+        return;
+      }
+
+      Cuisine.findByIdAndRemove(req.body.courseid, (err) => {
+        if (err) {
+          return next(err);
+        }
+
+        res.redirect('/cookbook/cuisines');
+      });
+    }
+  );
+};
