@@ -136,7 +136,6 @@ exports.course_delete_post = (req, res, next) => {
       },
     },
     (err, results) => {
-      console.log(results.course_recipes);
       if (err) {
         return next(err);
       }
