@@ -6,7 +6,7 @@ block content
   form(method='POST' action='')
     div
       label(for='name') Name:
-      input(type='text', placeholder='Name of recipe' name='name' required='true' value=(undefined===recipe ? '' : recipe.title) )
+      input(type='text', placeholder='Name of recipe' name='name' required='true' value=(undefined===recipe ? '' : recipe.name) )
       label(for='prepTime') Prep Time:
       input(type='number',  name='prepTime' required='true' value=(undefined===recipe ? '' : recipe.prepTime) )
       label(for='cookTime') Cook Time:
