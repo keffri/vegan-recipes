@@ -176,3 +176,78 @@ exports.cuisine_delete_post = (req, res, next) => {
     }
   );
 };
+
+exports.cuisine_update_get = (req, res, next) => {
+  async.parallel(
+    {
+      cuisine(callback) {
+        Cuisine.findById(req.params.id).exec(callback);
+      },
+    },
+    (err, results) => {
+      if (err) {
+        return next(err);
+      }
+
+      if (results.cuisine === null) {
+        const err = new Error('Cuisine not found');
+        err.status = 404;
+        return next(err);
+      }
+
+      res.render('cuisine_form', {
+        title: 'Update Cuisine',
+        cuisine: results.cuisine,
+      });
+    }
+  );
+};
+
+exports.cuisine_update_post = [
+  body('name')
+    .trim()
+    .isLength({ min: 1 })
+    .escape()
+    .withMessage('Cuisine name must be specified.')
+    .isAlphanumeric()
+    .withMessage('Cuisine name contains non-alphanumeric characters.'),
+  body('country')
+    .trim()
+    .isLength({ min: 1 })
+    .escape()
+    .withMessage('Country name must be specified.')
+    .isAlphanumeric()
+    .withMessage('Country name contains non-alphanumeric characters.'),
+  body('description')
+    .trim()
+    .isLength({ min: 1 })
+    .escape()
+    .withMessage('Country name must be specified.'),
+  (req, res, next) => {
+    const errors = validationResult(req);
+
+    const cuisine = new Cuisine({
+      name: req.body.name,
+      country: req.body.country,
+      description: req.body.description,
+      _id: req.params.id,
+    });
+
+    if (!errors.isEmpty()) {
+      res.render('cuisine_form', {
+        title: 'Update Cuisine',
+        cuisine,
+        errors: errors.array(),
+      });
+      return;
+    }
+
+    Cuisine.findByIdAndUpdate(req.params.id, cuisine, {}, (err, thecuisine) => {
+      if (err) {
+        return next(err);
+      }
+
+      res.redirect(thecuisine.url);
+    });
+  },
+];
