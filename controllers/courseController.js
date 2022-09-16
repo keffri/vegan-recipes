@@ -2,7 +2,6 @@ const Course = require('../models/course');
 const Recipe = require('../models/recipe');
 const async = require('async');
 const { body, validationResult } = require('express-validator');
-const course = require('../models/course');
 
 // Display list of all courses.
 exports.course_list = (req, res, next) => {
@@ -160,3 +159,64 @@ exports.course_delete_post = (req, res, next) => {
     }
   );
 };
+
+exports.course_update_get = (req, res, next) => {
+  async.parallel(
+    {
+      course(callback) {
+        Course.findById(req.params.id).exec(callback);
+      },
+    },
+    (err, results) => {
+      if (err) {
+        return next(err);
+      }
+
+      if (results.course === null) {
+        const err = new Error('Course not found');
+        err.status = 404;
+        return next(err);
+      }
+
+      res.render('course_form', {
+        title: 'Update Course',
+        course: results.course,
+      });
+    }
+  );
+};
+
+exports.course_update_post = [
+  body('name')
+    .trim()
+    .isLength({ min: 1 })
+    .escape()
+    .withMessage('A course name must be specified.')
+    .isAlphanumeric()
+    .withMessage('Course name contains non-alphanumeric characters.'),
+  (req, res, next) => {
+    const errors = validationResult(req);
+
+    const course = new Course({
+      name: req.body.name,
+      _id: req.params.id,
+    });
+
+    if (!errors.isEmpty()) {
+      res.render('course_form', {
+        title: 'Update Course',
+        book,
+        errors: errors.array(),
+      });
+      return;
+    }
+
+    Course.findByIdAndUpdate(req.params.id, course, {}, (err, thecourse) => {
+      if (err) {
+        return next(err);
+      }
+
+      res.redirect(thecourse.url);
+    });
+  },
+];
