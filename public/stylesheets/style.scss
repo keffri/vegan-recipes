@@ -61,9 +61,9 @@ html, body {
 	font-family: Arial, Helvetica, sans-serif;
   }
 
-/*** RECIPE LIST***/
+/*** LIST ***/
 
-.recipeList {
+.list {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -94,9 +94,9 @@ html, body {
 
 }
 
-/*** RECIPE DETAIL ***/
+/*** DETAIL ***/
 
-.recipeDetail {
+.detail {
 	margin: 10rem 0;
 	display: flex;
 	flex-direction: column;
@@ -111,6 +111,12 @@ html, body {
 		margin-bottom: 1rem;
 	}
 
+	&__subTitle {
+		font-size: 1.5rem;
+		text-decoration: underline;
+		margin-bottom: 1rem;
+	}
+
 	&__list {
 		min-height: 200px;
 		display: flex;
@@ -118,11 +124,21 @@ html, body {
 		justify-content: space-around;
 		margin-bottom: 1rem;
 	}
+
+	&__description {
+		width: 400px;
+		margin: 2rem 0;
+		text-align: left;
+	}
+	 
+	&__text {
+		margin: 1.5rem 0;
+	}
 }
 
-/*** RECIPE FORM ***/
+/*** FORM ***/
 
-.recipeForm {
+.form {
 	height: 100%;
 	display: flex;
 	flex-direction: column;
@@ -144,7 +160,7 @@ html, body {
 		justify-content: center;
 
 		&--section {
-			
+			text-align: center;
 
 			input, select {
 				margin-bottom: 1.4rem;
@@ -164,74 +180,42 @@ html, body {
 	}
 }
 
-/*** RECIPE DELETE ***/
+/*** DELETE ***/
 
-.recipeDelete {
+.delete {
 	margin-top: 10rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-between;
 	height: 200px;
-}
 
-/*** COURSE LIST***/
-
-.courseList {
-	&__title {
+	&__title, &__subTitle {
 		font-size: 1.5rem;
 		text-decoration: underline;
 		margin: 1rem 0;
 	}
-
-	&__item {
-		margin: 0.5rem 0;
-	}
-}
-
-/*** COURSE DETAIL ***/
-
-.courseDetail {
-	&__title {
-		font-size: 1.5rem;
-		margin: 1rem 0;
+	
+	&__text {
+		font-weight: 800;
+		margin-bottom: 1rem;
 	}
 
-	&__subTitle {
-		font-size: 1.2rem;
-		text-decoration: underline;
-		margin-bottom: .5rem;
-	}
-}
+	&__dt {
+		font-size: 1.25rem;
 
-
-/*** CUISINE LIST ***/
-
-
-.cuisineList {
-	&__title {
-		font-size: 1.5rem;
-		text-decoration: underline;
-		margin: 1rem 0;
 	}
 
-	&__item {
-		margin: 0.5rem 0;
-	}
-}
-
-/*** CUISINE DETAIL ***/
-
-.cuisineDetail {
-	&__title {
-		font-size: 1.5rem;
-		margin: 1rem 0;
+	&__div {
+		width: 300px;
 	}
 
-	&__subTitle {
-		font-size: 1.2rem;
-		text-decoration: underline;
-		margin-bottom: .5rem;
+	&__section {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
 	}
 }
 

@@ -66,19 +66,19 @@ html, body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/*** RECIPE LIST***/
-.recipeList {
+/*** LIST ***/
+.list {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-.recipeList__title {
+.list__title {
   font-size: 1.8rem;
   text-decoration: underline;
   margin: 1rem 0;
 }
-.recipeList__item {
+.list__item {
   min-width: 275px;
   margin: 1rem 0;
   padding: 0.5rem 0;
@@ -86,15 +86,15 @@ html, body {
   border-radius: 5px;
   border: 2px solid rgba(255, 255, 255, 0.8431372549);
 }
-.recipeList__item a {
+.list__item a {
   font-size: 1.1rem;
 }
-.recipeList__item a:hover {
+.list__item a:hover {
   text-decoration: underline;
 }
 
-/*** RECIPE DETAIL ***/
-.recipeDetail {
+/*** DETAIL ***/
+.detail {
   margin: 10rem 0;
   display: flex;
   flex-direction: column;
@@ -102,45 +102,61 @@ html, body {
   align-items: center;
   text-align: center;
 }
-.recipeDetail__title {
+.detail__title {
   font-size: 1.8rem;
   text-decoration: underline;
   margin-bottom: 1rem;
 }
-.recipeDetail__list {
+.detail__subTitle {
+  font-size: 1.5rem;
+  text-decoration: underline;
+  margin-bottom: 1rem;
+}
+.detail__list {
   min-height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   margin-bottom: 1rem;
 }
+.detail__description {
+  width: 400px;
+  margin: 2rem 0;
+  text-align: left;
+}
+.detail__text {
+  margin: 1.5rem 0;
+}
 
-/*** RECIPE FORM ***/
-.recipeForm {
+/*** FORM ***/
+.form {
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-.recipeForm__title {
+.form__title {
   font-size: 1.8rem;
   text-decoration: underline;
   margin-bottom: 1rem;
 }
-.recipeForm__form {
+.form__form {
   display: flex;
   flex-direction: column;
   width: 500px;
   align-items: center;
   justify-content: center;
 }
-.recipeForm__form--section input, .recipeForm__form--section select {
+.form__form--section {
+  text-align: center;
+}
+.form__form--section input, .form__form--section select {
   margin-bottom: 1.4rem;
   display: flex;
   width: 300px;
 }
-.recipeForm__form--checkbox {
+.form__form--checkbox {
   max-width: 450px;
   display: flex;
   flex-wrap: wrap;
@@ -149,8 +165,8 @@ html, body {
   margin-bottom: 1rem;
 }
 
-/*** RECIPE DELETE ***/
-.recipeDelete {
+/*** DELETE ***/
+.delete {
   margin-top: 10rem;
   display: flex;
   flex-direction: column;
@@ -158,47 +174,27 @@ html, body {
   justify-content: space-between;
   height: 200px;
 }
-
-/*** COURSE LIST***/
-.courseList__title {
+.delete__title, .delete__subTitle {
   font-size: 1.5rem;
   text-decoration: underline;
   margin: 1rem 0;
 }
-.courseList__item {
-  margin: 0.5rem 0;
+.delete__text {
+  font-weight: 800;
+  margin-bottom: 1rem;
 }
-
-/*** COURSE DETAIL ***/
-.courseDetail__title {
-  font-size: 1.5rem;
-  margin: 1rem 0;
+.delete__dt {
+  font-size: 1.25rem;
 }
-.courseDetail__subTitle {
-  font-size: 1.2rem;
-  text-decoration: underline;
-  margin-bottom: 0.5rem;
+.delete__div {
+  width: 300px;
 }
-
-/*** CUISINE LIST ***/
-.cuisineList__title {
-  font-size: 1.5rem;
-  text-decoration: underline;
-  margin: 1rem 0;
-}
-.cuisineList__item {
-  margin: 0.5rem 0;
-}
-
-/*** CUISINE DETAIL ***/
-.cuisineDetail__title {
-  font-size: 1.5rem;
-  margin: 1rem 0;
-}
-.cuisineDetail__subTitle {
-  font-size: 1.2rem;
-  text-decoration: underline;
-  margin-bottom: 0.5rem;
+.delete__section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 /*** HEADER ***/
