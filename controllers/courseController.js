@@ -116,7 +116,7 @@ exports.course_delete_get = (req, res, next) => {
       }
 
       res.render('course_delete', {
-        title: 'Course Delete!',
+        title: 'Course Delete',
         course: results.course,
         course_recipes: results.course_recipes,
       });
