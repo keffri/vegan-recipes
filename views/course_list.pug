@@ -1,10 +1,12 @@
 extends layout 
 
 block content
-    h1(class="courseList__title")= title
-    a(href="/cookbook/course/create") Create a new course!
+    section(class="list")
+        h1(class="list__title")= title
+        button(class="btn")
+            a(href="/cookbook/course/create") Create a new course!
 
-    ul 
-        each course in course_list
-            li(class="courseList__item")
-                a(href=course.url) #{course.name}
+        ul 
+            each course in course_list
+                li(class="list__item")
+                    a(href=course.url) #{course.name}

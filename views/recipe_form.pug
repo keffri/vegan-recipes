@@ -1,10 +1,10 @@
 extends layout
 
 block content
-  section(class="recipeForm")
-    h1(class="recipeForm__title")= title 
-    form(class="recipeForm__form" method='POST' action='')
-      div(class="recipeForm__form--section")
+  section(class="form")
+    h1(class="form__title")= title 
+    form(class="form__form" method='POST' action='')
+      div(class="form__form--section")
         label(for='name') Name:
         input(type='text', placeholder='Name of recipe' name='name' required='true' value=(undefined===recipe ? '' : recipe.name) )
         label(for='prepTime') Prep Time:
@@ -17,7 +17,7 @@ block content
         input(type='number',  name='servingSize' required='true' value=(undefined===recipe ? '' : recipe.servingSize) )
         label(for='link') Link:
         input(type='text',  name='link' value=(undefined===recipe ? '' : recipe.link) )
-      div(class="recipeForm__form--section")
+      div(class="form__form--section")
         label(for='course') Course:
         select(type='select', placeholder='Select course' name='course' required='true' )
           - courses.sort(function(a, b) {let textA = a.name.toUpperCase(); let textB = b.name.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
@@ -26,7 +26,7 @@ block content
               option(value=course._id selected=(course._id.toString()===recipe.course._id.toString() ? 'selected' : false) ) #{course.name}
             else
               option(value=course._id) #{course.name}
-      div(class="recipeForm__form--checkbox")
+      div(class="form__form--checkbox")
         label Cuisine (Select one):
         div
           for cuisine in cuisines

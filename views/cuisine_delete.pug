@@ -1,26 +1,28 @@
 extends layout
 
 block content
-  h1 #{title}: #{cuisine.name}
+  section(class="delete")
+    h1(class="delete__title") #{title}: #{cuisine.name}
 
-  if cuisine_recipes.length
+    if cuisine_recipes.length
 
-    p #[strong Delete the following recipes before attempting to delete this cuisine.]
+      div(class="delete__section")
+        p(class="delete__text") Delete the following recipes before proceeding.
 
-    div
+        div(class="delete__div")
 
-      h4 Recipes
+          h4(class="delete__subTitle") Recipes
 
-      dl
-      each recipe in cuisine_recipes
-        dt
-          a(href=recipe.url) #{recipe.name}
+          dl
+          each recipe in cuisine_recipes
+            dt(class="delete__dt")
+              a(href=recipe.url) #{recipe.name}
 
-  else
-    p Do you really want to delete this Cuisine?
+    else
+      p Do you really want to delete this Cuisine?
 
-    form(method='POST' action='')
-      div
-        input(type='hidden',name='cuisineid', required='true', value=cuisine._id )
+      form(method='POST' action='')
+        div
+          input(type='hidden',name='cuisineid', required='true', value=cuisine._id )
 
-      button(type='submit') Delete
+        button(class="btn submit" type='submit') Delete

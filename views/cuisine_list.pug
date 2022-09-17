@@ -1,12 +1,14 @@
 extends layout 
 
 block content
-    h1(class="cuisineList__title")= title
-    a(href="/cookbook/cuisine/create") Create a new cuisine!
+    section(class="list")
+        h1(class="list__title")= title
+        button(class="btn")
+            a(href="/cookbook/cuisine/create") Create a new cuisine!
 
-    ul 
-        each cuisine in cuisine_list
-            li(class="cuisineList__item")
-                a(href=cuisine.url) #{cuisine.name}
-        else 
-            li There are no recipes
+        ul 
+            each cuisine in cuisine_list
+                li(class="list__item")
+                    a(href=cuisine.url) #{cuisine.name}
+            else 
+                li There are no recipes

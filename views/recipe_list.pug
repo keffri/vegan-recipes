@@ -1,14 +1,14 @@
 extends layout 
 
 block content
-    section(class="recipeList")
-        h1(class="recipeList__title")= title
+    section(class="list")
+        h1(class="list__title")= title
         button(class="btn")
             a(href="/cookbook/recipe/create") CREATE RECIPE
 
         ul 
             each recipe in recipe_list
-                li(class="recipeList__item")
+                li(class="list__item")
                     a(href=recipe.url) #{recipe.name}
                     p Course: #{recipe.course.name}
                     p Cuisine: #{recipe.cuisine.name}

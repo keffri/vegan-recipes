@@ -2,9 +2,9 @@ extends layout
 
 block content
 
-  section(class="recipeDetail")
-    h1(class="recipeDetail__title") #{recipe.name} 
-    ul(class="recipeDetail__list") 
+  section(class="detail")
+    h1(class="detail__title") #{recipe.name} 
+    ul(class="detail__list") 
       li
         a(href=`/cookbook/course/${course._id}`) Course: #{course.name}
       li 

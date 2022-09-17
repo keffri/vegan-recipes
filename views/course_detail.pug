@@ -1,21 +1,22 @@
 extends layout
 
 block content
+  section(class="detail")
+    h1(class="detail__title") Course: #{course.name}
 
-  h1(class="courseDetail__title") Course: #{course.name}
+    div
 
-  div(style='margin-left:20px;margin-top:20px')
+      h4(class="detail__subTitle") Recipes
 
-    h4(class="courseDetail__subTitle") Recipes
-
-    dl
-      each recipe in course_recipes
-        dt
-          a(href=recipe.url) #{recipe.name}
-      else
-        p This course has no recipes
-  hr
-  p
-    a(href=course.url+"/delete") Delete course
-  p
-    a(href=course.url+'/update') Update course
+      dl
+        each recipe in course_recipes
+          dt(class="detail__text")
+            a(href=recipe.url) #{recipe.name}
+        else
+          p(class="detail__text") This course has no recipes
+    div(class="btns")
+      button(class="btn")
+        a(href=course.url+'/update') Update course
+      button(class="btn")
+        a(href=course.url+"/delete") Delete course
+    

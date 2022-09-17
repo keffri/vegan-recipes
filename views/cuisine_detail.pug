@@ -1,23 +1,25 @@
 extends layout
 
 block content
+  section(class="detail")
+    h1(class="detail__title") Cuisine: #{cuisine.name}
 
-  h1(class="cuisineDetail__title") Cuisine: #{cuisine.name}
+    p(class="detail__description") Description: #{cuisine.description}
 
-  p(class="cuisineDetail__description") Description: #{cuisine.description}
+    div
 
-  div(style='margin-left:20px;margin-top:20px')
+      h4(class="detail__subTitle") Recipes
 
-    h4(class="cuisineDetail__subTitle") Recipes
+      dl
+        each recipe in cuisine_recipes
+          dt(class="detail__text")
+            a(href=recipe.url) #{recipe.name}
+        else
+          p(class="detail__text") This cuisine has no recipes
 
-    dl
-      each recipe in cuisine_recipes
-        dt
-          a(href=recipe.url) #{recipe.name}
-      else
-        p This cuisine has no recipes
-    hr
-    p
-      a(href=`${cuisine.url}/delete`) Delete cuisine
-    p
-      a(href=`${cuisine.url}/update`) Update cuisine
+      div(class="btns")
+        button(class="btn")
+          a(href=`${cuisine.url}/update`) Update cuisine
+        button(class="btn")
+          a(href=`${cuisine.url}/delete`) Delete cuisine
+    
