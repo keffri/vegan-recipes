@@ -2,32 +2,37 @@ extends layout
 
 block content
 
-  h1 Title: #{recipe.name} 
-  ul 
-    li
-      a(href=`/cookbook/course/${course._id}`) Course: #{course.name}
-    li 
-      a(href=`/cookbook/cuisine/${cuisine._id}`) Cuisine: #{cuisine.name}
-    li
-      if recipe.prepTime > 1
-        p Prep Time: #{recipe.prepTime} minutes
-      else 
-        p Prep Time: #{recipe.prepTime} minute
-      if recipe.cookTime > 1
-        p Cook Time: #{recipe.cookTime} minutes
-      else 
-        p Cook Time: #{recipe.cookTime} minute
-      if recipe.totalTime > 1
-        p Total Time: #{recipe.totalTime} minutes
-      else 
-        p Total Time: #{recipe.totalTime} minute
-      if recipe.servingSize > 1
-        p Serving Size: #{recipe.servingSize} people
-      else 
-        p Serving Size: #{recipe.servingSize} person
-  hr
-  p
-    a(href=`${recipe.url}/delete`) Delete recipe
-  p
-    a(href=`${recipe.url}/update`) Update recipe
+  section(class="recipeDetail")
+    h1(class="recipeDetail__title") #{recipe.name} 
+    ul(class="recipeDetail__list") 
+      li
+        a(href=`/cookbook/course/${course._id}`) Course: #{course.name}
+      li 
+        a(href=`/cookbook/cuisine/${cuisine._id}`) Cuisine: #{cuisine.name}
+      li
+        if recipe.prepTime > 1
+          p Prep Time: #{recipe.prepTime} minutes
+        else 
+          p Prep Time: #{recipe.prepTime} minute
+      li
+        if recipe.cookTime > 1
+          p Cook Time: #{recipe.cookTime} minutes
+        else 
+          p Cook Time: #{recipe.cookTime} minute
+      li
+        if recipe.totalTime > 1
+          p Total Time: #{recipe.totalTime} minutes
+        else 
+          p Total Time: #{recipe.totalTime} minute
+      li
+        if recipe.servingSize > 1
+          p Serving Size: #{recipe.servingSize} people
+        else 
+          p Serving Size: #{recipe.servingSize} person
+    div(class="btns")
+      button(class="btn")
+        a(href=`${recipe.url}/update`) Update recipe
+      button(class="btn")
+        a(href=`${recipe.url}/delete`) Delete recipe
+      
 

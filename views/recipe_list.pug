@@ -1,14 +1,16 @@
 extends layout 
 
 block content
-    h1(class="recipeList__title")= title
-    a(href="/cookbook/recipe/create") Create a new recipe!
+    section(class="recipeList")
+        h1(class="recipeList__title")= title
+        button(class="btn")
+            a(href="/cookbook/recipe/create") CREATE RECIPE
 
-    ul 
-        each recipe in recipe_list
-            li(class="recipeList__item")
-                a(href=recipe.url) #{recipe.name}
-                p Course: #{recipe.course.name}
-                p Cuisine: #{recipe.cuisine.name}
-        else 
-            li There are no recipes
+        ul 
+            each recipe in recipe_list
+                li(class="recipeList__item")
+                    a(href=recipe.url) #{recipe.name}
+                    p Course: #{recipe.course.name}
+                    p Cuisine: #{recipe.cuisine.name}
+            else 
+                li There are no recipes
