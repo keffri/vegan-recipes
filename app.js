@@ -12,8 +12,9 @@ const helmet = require('helmet');
 var app = express();
 app.use(helmet());
 const mongoose = require('mongoose');
-
-const mongoDB = process.env.MONGO_URI;
+const dev_db_url =
+  'mongodb+srv://vr-keffri:VR-KEFFRI-604@vr-cluster.0d9pda8.mongodb.net/vegan-recipes?retryWrites=true&w=majority';
+const mongoDB = process.env.MONGO_URI || dev_db_url;
 mongoose.connect(mongoDB, { useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
