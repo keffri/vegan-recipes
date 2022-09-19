@@ -3,7 +3,6 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const mdbc = require('./mdbc');
 
 var indexRouter = require('./routes/index');
 const cookbookRouter = require('./routes/cookbook');
@@ -13,7 +12,7 @@ const helmet = require('helmet');
 var app = express();
 app.use(helmet());
 const mongoose = require('mongoose');
-const mongoDB = process.env.MONGO_URI || mdbc;
+const mongoDB = process.env.MONGO_URI;
 mongoose.connect(mongoDB, { useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
